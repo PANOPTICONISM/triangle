@@ -2,34 +2,71 @@ window.addEventListener("DOMContentLoaded", buttonClicked);
 
 function buttonClicked() {
     const calcButton = document.querySelector("#calculate");
-    calcButton.addEventListener("click", resizeTriangle);
+    calcButton.addEventListener("click", checkFields);
 }
 
-function resizeTriangle() {
+function checkFields() {
 
-    const leftSide = document.querySelector("#borderleft").value;
-    const rightSide = document.querySelector("#borderright").value;
-    const bottomSide = document.querySelector("#borderbottom").value;
+    const inputs = document.getElementsByTagName("input");
 
-    const triangle = document.querySelector(".triangle");
-    triangle.style.borderRightWidth = rightSide + "px";
-    triangle.style.borderLeftWidth = leftSide + "px";
-    triangle.style.borderBottomWidth = bottomSide + "px";
+    for (let i = 0; i < inputs.length; i++) {
+        if (inputs[1].value === "" || inputs[0].value === "" || inputs[2].value === "") {
+            console.log(i);
+            console.log("fill the inputs");
+            return;
+        } else {
+            resizeTriangle();
+        }
+    }
 
-    calculateResult(leftSide, rightSide, bottomSide);
+    function resizeTriangle() {
+
+        const leftSide = document.querySelector("#borderleft").value;
+        const rightSide = document.querySelector("#borderright").value;
+        const bottomSide = document.querySelector("#borderbottom").value;
+
+        console.log(leftSide, rightSide, bottomSide)
+
+        const triangle = document.querySelector(".triangle");
+        triangle.style.borderRightWidth = rightSide + "px";
+        triangle.style.borderLeftWidth = leftSide + "px";
+        triangle.style.borderBottomWidth = bottomSide + "px";
+
+        calculateResult(leftSide, rightSide, bottomSide);
+    }
 }
 
 function calculateResult(leftSide, rightSide, bottomSide) {
 
+    const result = document.createElement("h2");
+    const resultPlacement = document.querySelector(".result");
+
     if (leftSide === rightSide && rightSide === bottomSide) {
-        console.log("i am an equilateral triangle");
+        resultPlacement.textContent = "";
+        result.textContent = "This is an equilateral triangle with " + leftSide + "cm on the left side, " + rightSide + "cm on the right, and " + bottomSide + "cm at the bottom.";
     } else if (leftSide === rightSide || leftSide === bottomSide || bottomSide === leftSide || bottomSide === rightSide) {
-        console.log("i am a isosceles triangle");
+        resultPlacement.textContent = "";
+        result.textContent = "This is an isosceles triangle with " + leftSide + "cm on the left side, " + rightSide + "cm on the right, and " + bottomSide + "cm at the bottom.";
     } else if (leftSide !== rightSide && leftSide !== bottomSide && bottomSide !== rightSide) {
-        console.log("i am a scalene triangle");
-        return true;
+        resultPlacement.textContent = "";
+        result.textContent = "This is a scalene triangle with " + leftSide + "cm on the left side, " + rightSide + "cm on the right, and " + bottomSide + "cm at the bottom.";
     } else {
         return false;
     }
 
+    document.querySelector(".result").append(result);
+
+    const resetButton = document.querySelector("#reset");
+    resetButton.addEventListener("click", resetFields);
+
+}
+
+function resetFields() {
+
+    document.querySelector("#borderleft").value = "";
+    document.querySelector("#borderright").value = "";
+    document.querySelector("#borderbottom").value = "";
+    document.querySelector(".result").textContent = "";
+
+    buttonClicked();
 }

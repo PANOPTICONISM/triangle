@@ -8,7 +8,30 @@
     <title>Triangle</title>
     <style>
         body {
-            background-color: black;
+            margin: 0;
+            height: 100vh;
+            background-color: rgb(24, 25, 27);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        body h1 {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        main {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+            align-items: center;
+        }
+
+        main>div {
+            margin: 40px;
         }
 
         .calc {
@@ -19,6 +42,10 @@
             padding: 40px 0;
         }
 
+        .calc input {
+            margin-bottom: 10px;
+        }
+
         .triangle {
             width: 0;
             height: 0;
@@ -27,20 +54,32 @@
             border-left-width: 100px;
             border-bottom: 100px solid rgb(124, 11, 11);
         }
+
+        .buttons button {
+            width: 48.8%;
+        }
     </style>
 </head>
 
 <body>
-    <div class="calc">
-        <label>Left side:</label>
-        <input type="text" name="borderleft" id="borderleft">
-        <label>Right side:</label>
-        <input type="text" name="borderright" id="borderright">
-        <label>Bottom side:</label>
-        <input type="text" name="borderbottom" id="borderbottom">
-        <button id="calculate">Calculate</button>
+    <h1>Ready to answer the eternal question? Triangles, the search never stops.</h1>
+    <main>
+        <div class="calc">
+            <label for="borderleft">Left side:</label>
+            <input type="number" name="borderleft" id="borderleft" required>
+            <label for="borderright">Right side:</label>
+            <input type="number" name="borderright" id="borderright" required>
+            <label for="borderbottom">Bottom side:</label>
+            <input type="number" name="borderbottom" id="borderbottom" required>
+            <div class="buttons">
+                <button id="calculate">Calculate</button>
+                <button id="reset">Reset</button>
+            </div>
+        </div>
+        <div class="triangle"></div>
+    </main>
+    <div class="result">
     </div>
-    <div class="triangle"></div>
 
     <script src="script/script.js"></script>
 </body>
