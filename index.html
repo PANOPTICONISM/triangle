@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle</title>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .calc {
+            display: flex;
+            flex-direction: column;
+            max-width: 300px;
+            color: rgb(255, 255, 255);
+            padding: 40px 0;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border: 0 solid transparent;
+            border-right-width: 200px;
+            border-left-width: 100px;
+            border-bottom: 100px solid rgb(124, 11, 11);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calc">
+        <label>Left side:</label>
+        <input type="text" name="borderleft" id="borderleft">
+        <label>Right side:</label>
+        <input type="text" name="borderright" id="borderright">
+        <label>Bottom side:</label>
+        <input type="text" name="borderbottom" id="borderbottom">
+        <button id="calculate">Calculate</button>
+    </div>
+    <div class="triangle"></div>
+
+    <script src="script/script.js"></script>
+</body>
+
+</html>
