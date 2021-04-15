@@ -59,7 +59,7 @@ function calculateResult(triangle, leftSide, rightSide, bottomSide, resultPlacem
         result.textContent = "This is an isosceles triangle, with two equal siges and two equal angles.";
     } else if (leftSide !== rightSide && leftSide !== bottomSide && bottomSide !== rightSide) {
         shape = "scalene";
-        height = leftSide * 0.6;
+        height = (Number(leftSide) + Number(rightSide)) * 0.4;
         resultPlacement.textContent = "";
         result.textContent = "This is a scalene triangle, in which all sides are of different lengths.";
     } else {
