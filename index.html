@@ -46,6 +46,11 @@
             margin-bottom: 10px;
         }
 
+        .calc input:focus {
+            outline: none;
+            border: 2px solid orange;
+        }
+
         .triangle {
             width: 0;
             height: 0;
@@ -55,8 +60,23 @@
             border-bottom: 100px solid rgb(124, 11, 11);
         }
 
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(110px, 2fr));
+            gap: 5px;
+            grid-template-rows: auto;
+        }
+
         .buttons button {
-            width: 48.8%;
+            outline: none;
+            border: none;
+            padding: 8px;
+        }
+
+        .buttons button:hover {
+            background-color: rgb(20, 100, 190);
+            color: white;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -66,11 +86,11 @@
     <main>
         <div class="calc">
             <label for="borderleft">Left side:</label>
-            <input type="number" name="borderleft" id="borderleft" required>
+            <input type="number" name="borderleft" id="borderleft" min="1" required>
             <label for="borderright">Right side:</label>
-            <input type="number" name="borderright" id="borderright" required>
+            <input type="number" name="borderright" min="1" id="borderright" required>
             <label for="borderbottom">Bottom side:</label>
-            <input type="number" name="borderbottom" id="borderbottom" required>
+            <input type="number" name="borderbottom" min="1" id="borderbottom" required>
             <div class="buttons">
                 <button id="calculate">Calculate</button>
                 <button id="reset">Reset</button>

@@ -7,19 +7,22 @@ function buttonClicked() {
 
 function checkFields() {
 
+    const result = document.createElement("h2");
+    const resultPlacement = document.querySelector(".result");
+
     const inputs = document.getElementsByTagName("input");
 
-    for (let i = 0; i < inputs.length; i++) {
-        if (inputs[1].value === "" || inputs[0].value === "" || inputs[2].value === "") {
-            console.log(i);
-            console.log("fill the inputs");
-            return;
-        } else {
-            resizeTriangle();
-        }
+    if (inputs[1].value === "" || inputs[0].value === "" || inputs[2].value === "") {
+        resultPlacement.textContent = "";
+        result.textContent = "Please, try again by entering measurements to all the sides."
+    } else {
+        resizeTriangle(resultPlacement, result);
     }
 
-    function resizeTriangle() {
+    resultPlacement.append(result);
+
+
+    function resizeTriangle(resultPlacement, result) {
 
         const leftSide = document.querySelector("#borderleft").value;
         const rightSide = document.querySelector("#borderright").value;
@@ -32,14 +35,11 @@ function checkFields() {
         triangle.style.borderLeftWidth = leftSide + "px";
         triangle.style.borderBottomWidth = bottomSide + "px";
 
-        calculateResult(leftSide, rightSide, bottomSide);
+        calculateResult(leftSide, rightSide, bottomSide, resultPlacement, result);
     }
 }
 
-function calculateResult(leftSide, rightSide, bottomSide) {
-
-    const result = document.createElement("h2");
-    const resultPlacement = document.querySelector(".result");
+function calculateResult(leftSide, rightSide, bottomSide, resultPlacement, result) {
 
     if (leftSide === rightSide && rightSide === bottomSide) {
         resultPlacement.textContent = "";
@@ -53,8 +53,6 @@ function calculateResult(leftSide, rightSide, bottomSide) {
     } else {
         return false;
     }
-
-    document.querySelector(".result").append(result);
 
     const resetButton = document.querySelector("#reset");
     resetButton.addEventListener("click", resetFields);
