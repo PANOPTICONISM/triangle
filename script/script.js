@@ -16,13 +16,13 @@ function checkFields() {
         resultPlacement.textContent = "";
         result.textContent = "Please, try again by entering measurements to all the sides."
     } else {
-        resizeTriangle(resultPlacement, result);
+        resizeTriangle();
     }
 
     resultPlacement.append(result);
 
 
-    function resizeTriangle(resultPlacement, result) {
+    function resizeTriangle() {
 
         const leftSide = document.querySelector("#borderleft").value;
         const rightSide = document.querySelector("#borderright").value;
