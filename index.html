@@ -34,16 +34,35 @@
             margin: 40px;
         }
 
-        .calc {
+        fieldset {
+            border: none;
             display: flex;
             flex-direction: column;
+            padding: 0;
+        }
+
+        legend {
+            font-size: 25px;
+            padding: 10px 0;
+            color: brown;
+        }
+
+        .calc {
             max-width: 300px;
             color: rgb(255, 255, 255);
             padding: 40px 0;
         }
 
+        .calc label {
+            margin: 2px 0;
+        }
+
         .calc input {
             margin-bottom: 10px;
+        }
+
+        .calc input:valid {
+            border: 2px solid green;
         }
 
         .calc input:focus {
@@ -82,15 +101,18 @@
 </head>
 
 <body>
-    <h1>Ready to answer the eternal question? Triangles, the search never stops.</h1>
+    <h1>Find out if your triangle is equilateral, isosceles or scalene.</h1>
     <main>
         <div class="calc">
-            <label for="borderleft">Left side:</label>
-            <input type="number" name="borderleft" id="borderleft" min="1" required>
-            <label for="borderright">Right side:</label>
-            <input type="number" name="borderright" min="1" id="borderright" required>
-            <label for="borderbottom">Height:</label>
-            <input type="number" name="borderbottom" min="1" id="borderbottom" required>
+            <fieldset>
+                <legend>Dimensions</legend>
+                <label for="borderleft">Left side:</label>
+                <input type="number" name="borderleft" id="borderleft" min="1" placeholder="45" required>
+                <label for="borderright">Right side:</label>
+                <input type=" number" name="borderright" min="1" id="borderright" placeholder="50" required>
+                <label for="borderbottom">Height:</label>
+                <input type="number" name="borderbottom" min="1" id="borderbottom" placeholder="55" required>
+            </fieldset>
             <div class="buttons">
                 <button id="calculate">Calculate</button>
                 <button id="reset">Reset</button>

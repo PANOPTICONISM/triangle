@@ -56,7 +56,7 @@ function calculateResult(triangle, leftSide, rightSide, bottomSide, resultPlacem
         height = leftSide * 1.5;
         console.log(height)
         resultPlacement.textContent = "";
-        result.textContent = "This is an isosceles triangle, with two equal siges and two equal angles.";
+        result.textContent = "This is an isosceles triangle, with two equal sides and two equal angles.";
     } else if (leftSide !== rightSide && leftSide !== bottomSide && bottomSide !== rightSide) {
         shape = "scalene";
         height = (Number(leftSide) + Number(rightSide)) * 0.4;
