@@ -3,6 +3,9 @@ window.addEventListener("DOMContentLoaded", buttonClicked);
 function buttonClicked() {
     const calcButton = document.querySelector("#calculate");
     calcButton.addEventListener("click", checkFields);
+
+    const resetButton = document.querySelector("#reset");
+    resetButton.addEventListener("click", resetFields);
 }
 
 function checkFields() {
@@ -22,42 +25,38 @@ function checkFields() {
 
     resultPlacement.append(result);
 
-
     function resizeTriangle() {
 
         const leftSide = document.querySelector("#borderleft").value;
         const rightSide = document.querySelector("#borderright").value;
-        const bottomSide = document.querySelector("#borderbottom").value;
-
-        console.log(leftSide, rightSide, bottomSide);
+        const triangleHeight = document.querySelector("#triangleheight").value;
 
         const triangle = document.querySelector(".triangle");
         triangle.style.borderRightWidth = rightSide + "px";
         triangle.style.borderLeftWidth = leftSide + "px";
-        triangle.style.borderBottomWidth = bottomSide + "px";
+        triangle.style.borderBottomWidth = triangleHeight + "px";
 
-        calculateResult(triangle, leftSide, rightSide, bottomSide, resultPlacement, result);
+        calculateResult(triangle, leftSide, rightSide, triangleHeight, resultPlacement, result);
     }
 }
 
-function calculateResult(triangle, leftSide, rightSide, bottomSide, resultPlacement, result) {
+function calculateResult(triangle, leftSide, rightSide, triangleHeight, resultPlacement, result) {
 
     let shape;
     let height;
 
     // calculation and result
-    if (leftSide === rightSide && rightSide === bottomSide) {
+    if (leftSide === rightSide && rightSide === triangleHeight) {
         shape = "equilateral";
         height = leftSide * (Math.sqrt(3) / 2);
         resultPlacement.textContent = "";
         result.textContent = "This is an equilateral triangle, in which all three sides are of equal length.";
-    } else if (leftSide === rightSide || leftSide === bottomSide || bottomSide === leftSide || bottomSide === rightSide) {
+    } else if (leftSide === rightSide || leftSide === triangleHeight || triangleHeight === leftSide || triangleHeight === rightSide) {
         shape = "isosceles";
-        height = leftSide * 1.5;
-        console.log(height)
+        height = 2 * leftSide;
         resultPlacement.textContent = "";
         result.textContent = "This is an isosceles triangle, with two equal sides and two equal angles.";
-    } else if (leftSide !== rightSide && leftSide !== bottomSide && bottomSide !== rightSide) {
+    } else if (leftSide !== rightSide && leftSide !== triangleHeight && triangleHeight !== rightSide) {
         shape = "scalene";
         height = (Number(leftSide) + Number(rightSide)) * 0.4;
         resultPlacement.textContent = "";
@@ -66,18 +65,14 @@ function calculateResult(triangle, leftSide, rightSide, bottomSide, resultPlacem
         return false;
     }
 
-    // math depending on type of triangle
+    // resize depending on type of triangle
     if (shape === "equilateral") {
         triangle.style.borderBottomWidth = height + "px";
     } else if (shape === "isosceles") {
         triangle.style.borderBottomWidth = height + "px";
     } else if (shape === "scalene") {
         triangle.style.borderBottomWidth = height + "px";
-        console.log(height + "px")
     }
-
-    const resetButton = document.querySelector("#reset");
-    resetButton.addEventListener("click", resetFields);
 
 }
 
@@ -85,8 +80,10 @@ function resetFields() {
 
     document.querySelector("#borderleft").value = "";
     document.querySelector("#borderright").value = "";
-    document.querySelector("#borderbottom").value = "";
+    document.querySelector("#triangleheight").value = "";
     document.querySelector(".result").textContent = "";
+
+    document.querySelector(".triangle").removeAttribute("style");
 
     buttonClicked();
 }
